@@ -1,0 +1,1 @@
+module.exports = { DB: 'mongodb+srv://rickmortyuser:rickmorty@cluster0.9mxhd.mongodb.net/rickandmorty-db?retryWrites=true&w=majority' }
