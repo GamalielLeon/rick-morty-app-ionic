@@ -8,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProfilePage implements OnInit {
 
   constructor() { }
+  ngOnInit() { }
 
-  ngOnInit() {
-  }
-
+  logout(): void { alert('logout'); }
 }
