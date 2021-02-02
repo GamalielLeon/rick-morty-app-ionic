@@ -1,4 +1,3 @@
-// const { validationMessage } = require('../constants/functions');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 

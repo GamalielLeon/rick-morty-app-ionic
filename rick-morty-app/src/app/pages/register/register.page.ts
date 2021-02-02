@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EMAIL_PATTERN, NAME_PATTERN, PASSWORD_PATTERN, PHONE_PATTERN } from 'src/app/constants/patterns';
+import { UsersService } from 'src/app/services/users.service';
+import { UserModel } from '../../models/User.model';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,7 @@ export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   private passwordsMatched: boolean = true;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private usersService: UsersService) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern(NAME_PATTERN)]],
       lastName: ['', [Validators.required, Validators.pattern(NAME_PATTERN)]],
@@ -24,8 +26,10 @@ export class RegisterPage implements OnInit {
   ngOnInit() { }
 
   /********** METHODS **********/
-  onSubmitRegister(): void {
-    console.log('submit!');
+  async onSubmitRegister(): Promise<void> {
+    const userData: UserModel = {...this.registerForm.value};
+    const userPosted: UserModel = await this.usersService.postUser(userData);
+    console.log(userPosted);
   }
   checkPasswordConfirm(): void{
     const formControls = this.registerForm.controls;
