@@ -1,44 +1,47 @@
-<app-header [title]="'Register'" [backText]="'Login'" [pathToBack]="'login'"></app-header>
+<app-header [title]="'Registro'" [backText]="'Atrás'" [pathToBack]="'login'"></app-header>
 
 <ion-content>
     <form class="ion-margin-horizontal ion-margin-vertical" [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
         <ion-list>
             <ion-item>
-                <ion-label position="floating">First Name</ion-label>
-                <ion-input clearInput formControlName="firstName" autocapitalize="words" type="text" inputmode="text"></ion-input>
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input clearInput formControlName="firstName" autocapitalize="words" type="text" inputmode="text" placeholder="Ernesto"></ion-input>
             </ion-item>
             <small *ngIf="isFieldInvalid('firstName')" class="text-error">Este campo solo admite caracteres alfanuméricos (entre 3 y 50)</small>
             <ion-item>
-                <ion-label position="floating">Last Name</ion-label>
-                <ion-input clearInput formControlName="lastName" autocapitalize type="text" inputmode="text"></ion-input>
+                <ion-label position="floating">Apellidos</ion-label>
+                <ion-input clearInput formControlName="lastName" autocapitalize type="text" inputmode="text" placeholder="Hernández"></ion-input>
             </ion-item>
             <small *ngIf="isFieldInvalid('lastName')" class="text-error">Este campo solo admite caracteres alfanuméricos (entre 3 y 50)</small>
             <ion-item>
-                <ion-label position="floating">Email</ion-label>
-                <ion-input clearInput formControlName="email" type="email" inputmode="email"></ion-input>
+                <ion-label position="floating">Correo electrónico</ion-label>
+                <ion-input clearInput formControlName="email" type="email" inputmode="email" placeholder="correo@ejemplo.com"></ion-input>
             </ion-item>
             <small *ngIf="isFieldInvalid('email')" class="text-error">Formato de correo incorrecto, por favor ingrese un correo válido (ej. usuario@dominio.com)</small>
             <ion-item>
-                <ion-label position="floating">Phone Number</ion-label>
-                <ion-input clearInput formControlName="phone" type="tel" maxlength="14" inputmode="tel"></ion-input>
+                <ion-label position="floating">Teléfono/Celular</ion-label>
+                <ion-input clearInput formControlName="phone" type="tel" maxlength="14" inputmode="tel" placeholder="5510131655"></ion-input>
             </ion-item>
             <small *ngIf="isFieldInvalid('phone')" class="text-error">El número ingresado no es un número de teléfono válido</small>
             <ion-item>
-                <ion-label position="floating">Password</ion-label>
-                <ion-input clearInput formControlName="password" type="password" maxlength="12" inputmode="text" (ngModelChange)="checkPasswordConfirm()"></ion-input>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input clearInput formControlName="password" type="password" maxlength="12" inputmode="text" placeholder="Contraseña1" (ngModelChange)="checkPasswordConfirm()"></ion-input>
             </ion-item>
             <small *ngIf="isFieldInvalid('password')" class="text-error">
                 La contraseña debe tener 1 mayúscula, 1 minúscula y 1 número. Únicamente debe contener caracteres alfanuméricos y ser entre 8 y 12 caracteres.
             </small>
             <ion-item>
-                <ion-label position="floating">Repeat Password</ion-label>
-                <ion-input clearInput formControlName="passwordConfirm" type="password" maxlength="12" inputmode="text" (ngModelChange)="checkPasswordConfirm()"></ion-input>
+                <ion-label position="floating">Confirmar contraseña</ion-label>
+                <ion-input clearInput formControlName="passwordConfirm" type="password" maxlength="12" inputmode="text" placeholder="Contraseña1" (ngModelChange)="checkPasswordConfirm()"></ion-input>
             </ion-item>
             <small *ngIf="!getPasswordsMatched() && registerForm.get('passwordConfirm').touched" class="text-error">Las contraseñas no coinciden</small>
             <ion-button class="ion-margin-top" type="submit" expand="block" shape="round" [disabled]="registerForm.invalid || !getPasswordsMatched()">
-                Register
+                Registrarse
                 <ion-icon slot="end" name="create"></ion-icon>
             </ion-button>
+            <ion-row slot="end" class="ion-margin-vertical ion-justify-content-center">
+                <a class="anchor-link" routerLink="/login">Iniciar sesión</a>
+            </ion-row>
         </ion-list>
     </form>
 </ion-content>
