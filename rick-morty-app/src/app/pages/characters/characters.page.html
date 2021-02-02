@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>characters</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item lines="full" *ngFor="let character of characterss">
+            <ion-avatar slot="start">
+                <img [src]="character.image">
+            </ion-avatar>
+            <ion-label>
+                <h3>{{character.name}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <!-- ------------------------------------ -->
+    <ion-button routerLink="/character">
+        character
+    </ion-button>
+    <ion-item *ngFor="let character of characters; let i = index;">
+        <h3> character {{ i }} </h3>
+    </ion-item>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more characters...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
