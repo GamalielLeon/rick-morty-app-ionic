@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { REGISTER, PROFILE, CHARACTERS } from 'src/app/constants/paths';
+import { PROFILE, CHARACTERS } from 'src/app/constants/paths';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -9,8 +9,8 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: REGISTER,  // Aquí debería ir CHARACTERS
-        loadChildren: '../register/register.module#RegisterPageModule'
+        path: CHARACTERS,  // Aquí debería ir CHARACTERS
+        loadChildren: '../characters/characters.module#CharactersPageModule' 
       },
       {
         path: PROFILE,

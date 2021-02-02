@@ -1,7 +1,9 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button [defaultHref]="pathToBack"></ion-back-button>{{backText}}
+            <!-- <ion-back-button [defaultHref]="pathToBack">
+                </ion-back-button>{{backText}} -->
+            <ion-back-button [text]="backText" [defaultHref]="pathToBack" mode="ios"></ion-back-button>
         </ion-buttons>
         <ion-title slot="end">{{title}}</ion-title>
     </ion-toolbar>
