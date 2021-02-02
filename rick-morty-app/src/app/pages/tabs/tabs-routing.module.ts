@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PROFILE, CHARACTERS } from 'src/app/constants/paths';
+import { PROFILE, CHARACTERS, DETAILS } from 'src/app/constants/paths';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
