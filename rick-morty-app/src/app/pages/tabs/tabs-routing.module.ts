@@ -9,8 +9,8 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: CHARACTERS,  // Aquí debería ir CHARACTERS
-        loadChildren: '../characters/characters.module#CharactersPageModule' 
+        path: REGISTER,  // Aquí debería ir CHARACTERS
+        loadChildren: '../register/register.module#RegisterPageModule'
       },
       {
         path: PROFILE,
