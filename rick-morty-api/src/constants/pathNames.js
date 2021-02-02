@@ -2,5 +2,6 @@ module.exports = {
     api: '/api',
     characters: 'characters',
     episodes: 'episodes',
-    users: 'users'
-}
+    users: 'users',
+    token: 'token'
+};
