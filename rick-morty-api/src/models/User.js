@@ -33,7 +33,7 @@ const UserSchema = new Schema({
     },
     phone: {
         trim: true,
-        type: Number,
+        type: String,
         cast: validationMessage('cast', 'phone', 'number'),
         required: [true, validationMessage('required', 'phone')],
         validate: [patterns.PHONE_PATTERN, validationMessage('pattern', 'phone')]
