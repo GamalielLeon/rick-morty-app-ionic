@@ -11,7 +11,11 @@ export class CharactersService {
 
   private apiURL = 'http://localhost:3000/api/';
 
-  getCharacters(): Observable <any>{
-    return this.http.get(this.apiURL + 'characters?pageSize=671&page=1');
+  getCharacters(page): Observable <any>{
+    return this.http.get(this.apiURL + 'characters?pageSize=10&page=' + page);
+  }
+
+  getId(id): Observable <any>{
+    return this.http.get(this.apiURL + 'characters/' + id);
   }
 }

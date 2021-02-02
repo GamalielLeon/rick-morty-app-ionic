@@ -11,42 +11,37 @@ import { CharactersService } from '../../services/characters.service';
 export class CharactersPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  characters: any[] = Array(5);
-  characterss: any[];
-  // id: number = 1;
-
   constructor(private CharactersService: CharactersService) 
     {
-      this.getCharacterList();
+      this.loadCharacterList();
     }
 
+    characters: any[] = Array();
+    page = 1;
+    maximumPages = 67;
+    
   ngOnInit() {  }
 
-  async getCharacterList(){
-    await this.CharactersService.getCharacters().subscribe(res =>{
-      this.characterss = res;
-      console.log(this.characterss);
+  
+  async loadCharacterList(infiniteScroll?){
+    await this.CharactersService.getCharacters(this.page).subscribe(res =>{
+      this.characters = this.characters.concat(res);
+      // console.log(this.characters);
+      if (infiniteScroll){
+        infiniteScroll.target.complete();
+       }
     }, 
     error =>{
       console.log(error);
     })
   }
 
-  loadData(event) {
-    setTimeout(() => {
-      console.log('Done');
-      if (this.characters.length == 60) {
-        event.target.complete();
-        this.infiniteScroll.disabled = true;
-        return;
+  async loadMore(infiniteScroll){
+    this.page++;
+    await this.loadCharacterList(infiniteScroll);
+      if(this.page === this.maximumPages){
+        infiniteScroll.enable(false);
       }
-      var moreCharacters = Array(10);
-      this.characters.push( ...moreCharacters)
-      event.target.complete();
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      
-    }, 1000);
   }
 
 }

@@ -15,7 +15,11 @@ const routes: Routes = [
     path: TABS,
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
-  { path: '**', redirectTo: LOGIN, pathMatch: 'full' },
+  { path: '**', redirectTo: LOGIN, pathMatch: 'full' },  {
+    path: 'details',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
+  },
+
 ];
 
 @NgModule({
