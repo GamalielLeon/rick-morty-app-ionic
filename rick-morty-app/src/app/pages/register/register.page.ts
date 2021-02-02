@@ -21,7 +21,6 @@ export class RegisterPage implements OnInit {
       passwordConfirm: ['', [Validators.required, Validators.pattern(PASSWORD_PATTERN)]]
     });
   }
-
   ngOnInit() { }
 
   /********** METHODS **********/
@@ -31,12 +30,6 @@ export class RegisterPage implements OnInit {
   checkPasswordConfirm(): void{
     const formControls = this.registerForm.controls;
     this.setPasswordsMatched(formControls.password.value === formControls.passwordConfirm.value);
-    /* if (formControls.password.value.length < 8) {
-      this.setErrorPassword(ERROR_PASSWORD);
-    }
-    else if (formControls.password.invalid) {
-      this.setErrorPassword(ERROR_FORMAT_PASSWORD);
-    } */
   }
   isFieldInvalid(fieldName: string): boolean{
     const field = this.registerForm.controls[fieldName];

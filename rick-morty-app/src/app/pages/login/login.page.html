@@ -1,3 +1,26 @@
+<ion-header [translucent]="true">
+    <ion-toolbar class="ion-text-center">
+        <ion-title>Login</ion-title>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content>
-    <ion-title>LOGIN</ion-title>
+    <form class="ion-margin-horizontal ion-margin-vertical" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input clearInput formControlName="email" type="email" inputmode="email"></ion-input>
+            </ion-item>
+            <small *ngIf="isFieldInvalid('email')" class="text-error">Formato de correo incorrecto, por favor ingrese un correo válido (ej. usuario@dominio.com)</small>
+            <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input clearInput formControlName="password" type="password" maxlength="12" inputmode="text"></ion-input>
+            </ion-item>
+            <small *ngIf="isFieldInvalid('password')" class="text-error">La contraseña debe ser alfanumérica y mínimo de 8 caracteres</small>
+            <ion-button class="ion-margin-top" type="submit" expand="block" shape="round" [disabled]="loginForm.invalid">
+                Register
+                <ion-icon slot="end" name="create"></ion-icon>
+            </ion-button>
+        </ion-list>
+    </form>
 </ion-content>
