@@ -1,10 +1,9 @@
 const { validationMessage } = require('../constants/functions');
 const patterns = require('../constants/patterns');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
     id: {
         trim: true,
         type: Number,
@@ -51,13 +50,4 @@ const userSchema = new Schema({
     }
 });
 
-/* This hook is triggered when a document is about to be saved.
-   Here, it's needed a function in order to get the local instance of the
-   document to be saved, since arrow functions does not create a 'this' scope.
-*/
-userSchema.pre('save', async function(next) {
-    this.password = await bcrypt.hash(this.password, 11);
-    next();
-});
-
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', UserSchema);
