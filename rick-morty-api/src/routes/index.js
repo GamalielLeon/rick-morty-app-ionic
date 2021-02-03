@@ -1,5 +1,6 @@
 const { api, characters, episodes, users, token } = require('../constants/pathNames');
 const charactersRoutes = require('./characters');
+const authenticate = require('./verifyToken');
 const episodesRoutes = require('./episodes');
 const tokenRoutes = require('./authJwt');
 const usersRoutes = require('./users');
@@ -13,7 +14,6 @@ module.exports = (app) => {
         res.append('Access-Control-Allow-Credentials', 'true');
         res.append('Access-Control-Allow-Origin', '*');
         res.append('Content-Type', 'application/json');
-        res.append('Cache-Control', 'no-cache');
         next();
     });
     // Endpoints
