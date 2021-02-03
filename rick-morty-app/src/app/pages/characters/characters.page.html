@@ -1,39 +1,24 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>characters</ion-title>
-    </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content>
-    <!-- ---------------------------------- -->
-    <ion-button routerLink="/character">
-        character
-    </ion-button>
-    <ion-item *ngFor="let character of characterss; let i = index;">
-        <ion-avatar slot="start">
-            <img [src]="character.image">
-        </ion-avatar>
-        <ion-label>
-            <h3>{{character.name}}</h3>
-        </ion-label>
-    </ion-item>
-
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-        <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more characters...">
-        </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-    <!-- ----------------------------------- -->
-    <!-- <ion-list>
-        <ion-item lines="full" *ngFor="let character of characterss">
+    <!-- ------------------ character card ----------------- -->
+    <ion-card *ngFor="let character of characters; let i = index;" [routerLink]="['details/' + character.id]">
+        <ion-item>
             <ion-avatar slot="start">
                 <img [src]="character.image">
             </ion-avatar>
             <ion-label>
-                <h3>{{character.name}}</h3>
+                <h2 text-capitalize>{{i+1}}. {{character.name}}</h2>
             </ion-label>
         </ion-item>
-    </ion-list> -->
-    <!-- ------------------------------------ -->
+    </ion-card>
+
+    <!-- ------------------ loading more charcaters ----------------- -->
+    <ion-infinite-scroll threshold="1px" (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more characters...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
 
 
 </ion-content>
