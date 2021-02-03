@@ -1,8 +1,9 @@
+const authenticate = require('./verifyToken');
 const { User } = require('../models/index');
 const { Router } = require('express');
 const router = Router();
 
-router.get('/', async(req, res) => {
+router.get('/', authenticate, async(req, res) => {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 20;
     const idStart = pageSize * (page - 1) + 1;
@@ -10,7 +11,7 @@ router.get('/', async(req, res) => {
     const episodesPage = await User.find({}, { _id: 0, __v: 0, password: 0 }).where('id').gte(idStart).lte(idEnd);
     res.json(episodesPage);
 });
-router.get('/:id', async(req, res) => {
+router.get('/:id', authenticate, async(req, res) => {
     const user = await User.findOne({ id: req.params.id }, { _id: 0, __v: 0, password: 0 });
     res.status(200).json(user);
 });

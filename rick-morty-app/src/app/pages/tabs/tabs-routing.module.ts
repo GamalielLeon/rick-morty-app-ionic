@@ -10,11 +10,11 @@ const routes: Routes = [
     children: [
       {
         path: CHARACTERS,
-        loadChildren: '../characters/characters.module#CharactersPageModule'
+        loadChildren: () => import('src/app/pages/characters/characters.module').then(m => m.CharactersPageModule)
       },
       {
         path: PROFILE,
-        loadChildren: '../profile/profile.module#ProfilePageModule'
+        loadChildren: () => import('src/app/pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
         path: '**', redirectTo: PROFILE, pathMatch: 'full'
