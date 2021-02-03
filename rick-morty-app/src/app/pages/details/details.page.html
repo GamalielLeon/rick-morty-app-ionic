@@ -2,8 +2,8 @@
 <ion-content>
     <ion-grid>
         <ion-row>
-            <ion-col sizeMd="4" offsetMd="4">
-                <div *ngFor="let character of characters">
+            <ion-col sizeMd="4" offsetMd="4" *ngIf="dataReceived">
+                <div>
                     <ion-card>
                         <ion-card-content class="ion-text-center">
                             <!-- Image -->
@@ -12,18 +12,19 @@
                             <ion-card-title>
                                 {{character.name}}
                             </ion-card-title>
-                            <p>{{character.status}}</p>
                             <!------ Name & Status----->
+                            <p>{{character.status}}</p>
+                            <ion-button color="success">
+                                <ion-icon name="star"></ion-icon> Favoritos
+                            </ion-button>
                         </ion-card-content>
                     </ion-card>
                 </div>
                 <section>
-                    <div *ngFor="let character of characters">
+                    <div *ngFor="let episode of character.episode">
                         <ion-card>
                             <ion-card-content class="ion-text-center">
-                                <ion-card>
-                                    {{character.episode}}
-                                </ion-card>
+                                {{episode}}
                             </ion-card-content>
                         </ion-card>
                     </div>
