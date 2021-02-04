@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_URL, EPISODES_API } from '../constants/urls';
+import { ShareTokenService } from './share-token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EpisodesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private shareToken: ShareTokenService) { }
 
-  private apiURL = 'http://localhost:3000/api/';
-
-  
-  getId(id): Observable <any>{
-    return this.http.get(this.apiURL + 'episodes/' + id);
+  getId(id: number): Observable <any>{
+    const headers = this.shareToken.headers();
+    return this.http.get(`${API_URL}/${EPISODES_API}/${id}`, {headers});
   }
 }

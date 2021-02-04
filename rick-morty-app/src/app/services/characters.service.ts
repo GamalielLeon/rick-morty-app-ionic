@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_URL, CHARACTERS_API } from '../constants/urls';
+import { ShareTokenService } from './share-token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharactersService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private shareToken: ShareTokenService) { }
 
-  private apiURL = 'http://localhost:3000/api/';
-
-  getCharacters(page): Observable <any>{
-    return this.http.get(this.apiURL + 'characters?pageSize=10&page=' + page);
+  getCharacters(page: number): Observable <any>{
+    const headers = this.shareToken.headers();
+    return this.http.get(`${API_URL}/${CHARACTERS_API}?pageSize=10&page=${page}`, {headers});
   }
-
-  getId(id): Observable <any>{
-    return this.http.get(this.apiURL + 'characters/' + id);
+  getId(id: string): Observable <any>{
+    const headers = this.shareToken.headers();
+    return this.http.get(`${API_URL}/${CHARACTERS_API}/${id}`, {headers});
   }
 }

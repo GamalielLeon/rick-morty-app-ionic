@@ -3,6 +3,5 @@ module.exports = {
     iss: 'http://localhost:3000/api/',
     algorithm: 'HS256',
     expiresIn: 60 * 10,
-    name: 'userToken',
-    httpOnly: true
+    type: 'Bearer',
 };

@@ -14,38 +14,33 @@ export class DetailsPage implements OnInit {
   character: any;
   episodes: any;
   dataReceived: boolean = false;
-  comma = ",";
+  comma = ',';
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private charactersService: CharactersService
   ) { }
 
-  ngOnInit() {
-    this.getIdRoute();
-
-  }
-
+  ngOnInit() { this.getIdRoute(); }
 
   getIdRoute(){
-    this.detailsId = this.activatedRoute.snapshot.paramMap.get('id')
-    this.charactersService.getId( this.detailsId).subscribe(res =>{
+    this.detailsId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.charactersService.getId( this.detailsId).subscribe(res => {
       this.character = res[0];
       this.dataReceived = true;
       this.episodes = this.character.episode;
       // this.separateEpisodes (this.episodes, this.comma)
-    })
+    });
   }
-  
-  
+
   separateEpisodes(stringToDivide, separator){
-    let episodesArray = stringToDivide.split(separator);
-    debugger
-    for (let i=0; i < episodesArray.length; i++) {
-      debugger
-      document.write(episodesArray[i] + " / ");
-   }
-   console.log(episodesArray);
+    const episodesArray = stringToDivide.split(separator);
+    debugger;
+    for (let i = 0; i < episodesArray.length; i++) {
+      debugger;
+      document.write(episodesArray[i] + ' / ');
+    }
+    console.log(episodesArray);
   }
 
 }

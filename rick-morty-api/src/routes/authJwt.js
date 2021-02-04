@@ -1,4 +1,4 @@
-const { iss, name, secret, algorithm, expiresIn, httpOnly } = require('../constants/jwtData');
+const { iss, secret, algorithm, expiresIn } = require('../constants/jwtData');
 const { User } = require('../models/index');
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
@@ -14,9 +14,10 @@ router.post('/', async(req, res) => {
     if (passwordRight) {
         const payload = { name: user.firstName, email };
         const token = jwt.sign({ iss, ...payload }, secret, { algorithm, expiresIn });
+        const createdAt = new Date(Date.now());
+        const expiresAt = new Date(Date.now() + expiresIn * 1000);
         res.set('Authorization', `Bearer ${token}`);
-        res.cookie(name, token, { maxAge: expiresIn * 1000, httpOnly });
-        res.status(201).json({ token });
+        res.status(201).json({ token, type: 'Bearer', createdAt, expiresAt });
     }
 });
 

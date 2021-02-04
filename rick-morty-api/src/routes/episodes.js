@@ -1,8 +1,9 @@
 const { Episode } = require('../models/index');
+const authenticate = require('./verifyToken');
 const { Router } = require('express');
 const router = Router();
 
-router.get('/', async(req, res) => {
+router.get('/', authenticate, async(req, res) => {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 20;
     const idStart = pageSize * (page - 1) + 1;
@@ -11,7 +12,7 @@ router.get('/', async(req, res) => {
     await res.json(episodesPage);
 });
 
-router.get('/:id', async(req, res) => {
+router.get('/:id', authenticate, async(req, res) => {
     const id = req.params.id;
     const episode = await Episode.find({ id }, { _id: 0 });
     await res.json(episode);

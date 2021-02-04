@@ -16,9 +16,7 @@ const routes: Routes = [
         path: PROFILE,
         loadChildren: () => import('src/app/pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
-      {
-        path: '**', redirectTo: PROFILE, pathMatch: 'full'
-      }
+      { path: '**', redirectTo: PROFILE, pathMatch: 'full' }
     ]
   }
 ];

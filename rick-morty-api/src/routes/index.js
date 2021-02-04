@@ -1,6 +1,5 @@
 const { api, characters, episodes, users, token } = require('../constants/pathNames');
 const charactersRoutes = require('./characters');
-const authenticate = require('./verifyToken');
 const episodesRoutes = require('./episodes');
 const tokenRoutes = require('./authJwt');
 const usersRoutes = require('./users');
@@ -8,8 +7,8 @@ const usersRoutes = require('./users');
 module.exports = (app) => {
     // Set initial headers
     app.use((req, res, next) => {
-        res.append('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
-        res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.append('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization');
+        res.append('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
         // res.append('Set-Cookie', 'token=auth; HttpOnly; Max-Age=600');
         res.append('Access-Control-Allow-Credentials', 'true');
         res.append('Access-Control-Allow-Origin', '*');

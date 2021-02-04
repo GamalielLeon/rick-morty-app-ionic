@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TABS } from 'src/app/constants/paths';
 import { EMAIL_PATTERN, PASSWORD_LOGIN_PATTERN  } from 'src/app/constants/patterns';
 import { ApiTokenService } from '../../services/api-token.service';
+import { ShareTokenService } from '../../services/share-token.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private apiTokenService: ApiTokenService,
-              private router: Router) {
+              private router: Router, private shareToken: ShareTokenService) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
       password: ['', [Validators.required, Validators.pattern(PASSWORD_LOGIN_PATTERN)]],
@@ -33,7 +34,7 @@ export class LoginPage implements OnInit {
   private async getToken(): Promise<void> {
     try {
       const {token} = await this.apiTokenService.generateToken(this.loginForm.value);
-      document.cookie = `userToken=${token}`;
+      this.shareToken.setToken(token);
       this.router.navigateByUrl(TABS);
     } catch (error) { alert('Correo electrónico o contraseña incorrecta'); }
   }
